@@ -23,7 +23,7 @@ class ImageView(viewsets.ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         return JsonResponse({'detail': 'Only image owner can delete the image.'}, status=status.HTTP_403_FORBIDDEN)
 
-    @action(detail=False, methods=['delete'])
+    @action(detail=False, methods=['delete'], url_name='delete_multiple')
     def delete_multiple(self, request):
         to_be_deleted_list = request.query_params.get('ids', '').split(',')
         deleted_list = []
@@ -41,7 +41,7 @@ class ImageView(viewsets.ModelViewSet):
                              'not_deleted': not_deleted_list},
                             status=status.HTTP_200_OK)
 
-    @action(detail=False, methods=['post'], )
+    @action(detail=False, methods=['post'], url_name='create_multiple')
     def create_multiple(self, request):
         create_list = request.data
         created_list = []
