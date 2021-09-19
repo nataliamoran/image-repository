@@ -1,0 +1,8 @@
+venv
+*.jpg
+*.jpeg
+*.png
+*.pyc
+db.sqlite3
+*.http
+.idea/
