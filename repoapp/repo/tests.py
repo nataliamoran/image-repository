@@ -53,6 +53,9 @@ class TestImages(TestCase):
         cls.cli = ImageClient()
 
     def test__create_image__green(self):
+        """
+        Authorized user successfully creates a new image.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         # act
@@ -61,16 +64,10 @@ class TestImages(TestCase):
         # assert
         self.assertEquals(201, res.status_code)
 
-    def test__create_image__bad_image__fail(self):
-        # arrange
-        self.cli.login(self.username1, self.password)
-        # act
-        res = self.cli.image_create(
-            {'public': True, 'image': self.image[1:12]})
-        # assert
-        self.assertEquals(201, res.status_code)
-
-    def test__create_image__not_logged_in__returns_401(self):
+    def test__create_image__not_logged_in__returns_403(self):
+        """
+        Unauthorized user tries to create a new image and fails.
+        """
         # arrange
         # act
         res = self.cli.image_create(
@@ -79,6 +76,9 @@ class TestImages(TestCase):
         self.assertEquals(403, res.status_code)
 
     def test__delete_image__green(self):
+        """
+        Authorized user successfully deletes an existing image.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         self.cli.image_create(
@@ -89,7 +89,10 @@ class TestImages(TestCase):
         # assert
         self.assertEquals(204, res.status_code)
 
-    def test__delete_image__not_logged_in__returns_401(self):
+    def test__delete_image__not_logged_in__returns_403(self):
+        """
+        Unauthorized user tries to delete an existing image and fails.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         self.cli.image_create(
@@ -102,6 +105,9 @@ class TestImages(TestCase):
         self.assertEquals(403, res.status_code)
 
     def test__delete_image__owned_by_other__returns_forbidden(self):
+        """
+        Authorized user tries to delete an image owned by another user and fails.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         self.cli.image_create(
@@ -114,6 +120,9 @@ class TestImages(TestCase):
         self.assertEquals(403, res.status_code)
 
     def test__create_muliple__green(self):
+        """
+        Authorized user successfully creates multiple images.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         data = [
@@ -128,6 +137,11 @@ class TestImages(TestCase):
         self.assertEquals(len(data), Image.objects.filter(owner=self.user1).count())
 
     def test__create_muliple__bad_item__partially_create(self):
+        """
+        Authorized user tries to create multiple images:
+            - some images are successfully created,
+            - some images creation fails because of incorrect JSON data format.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         data = [
@@ -142,6 +156,9 @@ class TestImages(TestCase):
         self.assertEquals(len(data) - 1, Image.objects.filter(owner=self.user1).count())
 
     def test__delete_muliple__green(self):
+        """
+        Authorized user successfully deletes multiple images.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         data = [
@@ -157,7 +174,12 @@ class TestImages(TestCase):
         self.assertEquals(200, res.status_code)
         self.assertEquals(0, Image.objects.filter(owner=self.user1).count())
 
-    def test__delete_muliple__bad_id__should_create_partially(self):
+    def test__delete_muliple__bad_id__delete_partially(self):
+        """
+        Authorized user tries to delete multiple images:
+            - some images are successfully deleted,
+            - some images cannot be deleted because their ID does not exist.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         data = [
@@ -175,6 +197,9 @@ class TestImages(TestCase):
         self.assertEquals(0, Image.objects.filter(owner=self.user1).count())
 
     def test_image_list__green(self):
+        """
+        Authorized user retrieves all images.
+        """
         # arrange
         self.cli.login(self.username1, self.password)
         # act
