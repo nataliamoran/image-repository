@@ -9,7 +9,7 @@ Database is [sqlite3](https://www.sqlite.org/index.html).
 
 Supported image formats: .jpeg, .png 
 
-####Functionality:
+**Functionality:**
 * Upload one image or multiple images
     * Secure uploading: only authorized users can add images
     * Permissions: when a new image is added, the user sets its private or public access 
@@ -38,7 +38,7 @@ $ virtualenv env -p `which python3`
 ```
 $ source env/bin/activate
 ```
-(Also, setup the the project interpreter in PyCharm or other IDE)
+(Also, setup the project interpreter in PyCharm or other IDE)
 
 * Install the project requirements by running
 ```
@@ -53,7 +53,6 @@ This will generate sqlite3 database with the relevant structure.
 
 * Run Django server from `/repoapp` dir
 ```
-$ cd repoapp
 $ python manage.py runserver
 ```
 
@@ -74,7 +73,7 @@ If you decide to use [Postman](https://www.postman.com/) to call the API:
 
 Otherwise, please check how to login via your API platform of choice before using this API.
 
-* ###Add one image to the repo
+* **Add one image to the repo**
     - Request Method: POST
     - Request URL: http://127.0.0.1:8000/images/
     - Request JSON format:
@@ -89,7 +88,7 @@ Otherwise, please check how to login via your API platform of choice before usin
         * Failure - Unauthorized: 403
         * Failure - Bad Request: 400
         
-* ###Add multiple images to the repo
+* **Add multiple images to the repo**
     - Request Method: POST
     - Request URL: http://127.0.0.1:8000/images/create_multiple/
     - Request JSON format:
@@ -115,18 +114,18 @@ Otherwise, please check how to login via your API platform of choice before usin
             "failed": [<image data>]
       }
         ```
-* ###Delete one image from the repo
+* **Delete one image from the repo**
     - Request Method: DELETE
-    - Request URL: http://127.0.0.1:8000/images/<IMAGE ID>/
+    - Request URL: http://127.0.0.1:8000/images/<IMAGE-ID>/
     - No Request Body
     - Response Status: 
         * Success - Image deleted: 204
         * Failure - Unauthorized: 403
         * Failure - Not Found: 404
               
-* ###Delete multiple images from the repo
+* **Delete multiple images from the repo**
     - Request Method: DELETE
-    - Request URL: http://127.0.0.1:8000/images/delete_multiple/?ids=<COMMA-SEPARATED IMAGE IDS>
+    - Request URL: http://127.0.0.1:8000/images/delete_multiple/?ids=<COMMA-SEPARATED-IMAGE-IDS>
     - No Request Body
     - Response Status: 
         * Success: 200
@@ -140,8 +139,8 @@ Otherwise, please check how to login via your API platform of choice before usin
         ```
         
 ## Create a new superuser (for django admin access)
+Call the following command from the `/repoapp` dir
 ```
-$ cd repoapp
 $ python manage.py createsuperuser
 ```
       
