@@ -56,21 +56,23 @@ This will generate sqlite3 database with the relevant structure.
 $ python manage.py runserver
 ```
 
-* Create a new superuser from `/repoapp` dir (for django admin access)
+* Create two sample users (run the following command from `/repoapp` dir)
 ```
-$ python manage.py createsuperuser
+$ python manage.py create_sample_users
 ```
-
-* To use the REST API you must be an authorized user. You can log in as a superuser. 
-Alternatively, if you prefer to log in as a user 
-(for the REST API purposes there is no difference between logging in as a superuser or user), 
-then please create a new user in the admin system: `http://127.0.0.1:8000/admin` 
-(Only a superuser can access the admin system.)
 
 
 ## REST API
 
 **IMPORTANT:** Only authorized users can use the REST API. Before using the API please log in.
+
+```
+Username: user1
+Password: 1111
+
+Username: user2
+Password: 1111
+```
 
 If you decide to use [Postman](https://www.postman.com/) to call the API: 
 1. Select `Basic Auth` type in the `Authorization` tab 
