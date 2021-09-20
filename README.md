@@ -75,7 +75,7 @@ Otherwise, please check how to login via your API platform of choice before usin
 
 * **Add one image to the repo**
     - Request Method: POST
-    - Request URL: http://127.0.0.1:8000/images/
+    - Request URL: `http://127.0.0.1:8000/images/`
     - Request JSON format:
         ```
         {
@@ -90,7 +90,7 @@ Otherwise, please check how to login via your API platform of choice before usin
         
 * **Add multiple images to the repo**
     - Request Method: POST
-    - Request URL: http://127.0.0.1:8000/images/create_multiple/
+    - Request URL: `http://127.0.0.1:8000/images/create_multiple/`
     - Request JSON format:
         ```
       [
@@ -116,7 +116,7 @@ Otherwise, please check how to login via your API platform of choice before usin
         ```
 * **Delete one image from the repo**
     - Request Method: DELETE
-    - Request URL: http://127.0.0.1:8000/images/<IMAGE-ID>/
+    - Request URL: `http://127.0.0.1:8000/images/<IMAGE ID>/`
     - No Request Body
     - Response Status: 
         * Success - Image deleted: 204
@@ -125,7 +125,7 @@ Otherwise, please check how to login via your API platform of choice before usin
               
 * **Delete multiple images from the repo**
     - Request Method: DELETE
-    - Request URL: http://127.0.0.1:8000/images/delete_multiple/?ids=<COMMA-SEPARATED-IMAGE-IDS>
+    - Request URL: `http://127.0.0.1:8000/images/delete_multiple/?ids=<COMMA-SEPARATED IMAGE IDS>`
     - No Request Body
     - Response Status: 
         * Success: 200
