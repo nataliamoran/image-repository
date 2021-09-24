@@ -90,6 +90,10 @@ Otherwise, please check how to login via your API platform of choice before usin
           "image": <base64-encoded image string>
         }
         ```
+      **NOTE:** To encode an image with base64 please use the following command
+       ```
+        cat <IMAGE PATH> | base64
+       ```
     - Response Status: 
         * Success - Image added: 201
         * Failure - Unauthorized: 403
